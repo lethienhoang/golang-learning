@@ -35,6 +35,8 @@ func main() {
 
 	fmt.Println("Successfully opened user.json")
 
+	// defer statements delay the execution of the function or method or an anonymous method until the nearby functions returns
+	defer jsonFile.Close()
 	// convert jsonFile to by array
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 
@@ -50,8 +52,4 @@ func main() {
 		fmt.Println("User Name: " + users.Users[i].Name)
 		fmt.Println("Facebook Url: " + users.Users[i].Social.Facebook)
 	}
-
-	// defer statements delay the execution of the function or method or an anonymous method until the nearby functions returns
-	defer jsonFile.Close()
-
 }
