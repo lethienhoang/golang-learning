@@ -13,7 +13,7 @@ FROM alpine:latest AS production
 # builder stage to our production stage
 RUN mkdir /app
 WORKDIR /app
-COPY --from=builder /app /app
+COPY --from=builder /app ./app
 
 # we can then kick off our newly compiled
 # binary exectuable!!
