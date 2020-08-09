@@ -29,7 +29,7 @@ func (conn *DbContext) Initialize() {
 		panic("failed to connect database")
 	}
 
-	defer conn.Db.Close()
+	// defer conn.Db.Close()
 
 	fmt.Println("Successfully connected!")
 

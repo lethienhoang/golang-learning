@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 )
 
 var dbContext db.DbContext
@@ -32,6 +33,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 
 	defer r.Body.Close()
 
+	dbContext.Db.NewRecord(user)
 	dbContext.Db.Create(&user)
 
 	respondWithJSON(w, http.StatusCreated, user)
@@ -103,7 +105,13 @@ func respondWithError(w http.ResponseWriter, code int, message string) {
 }
 
 func main() {
-	dbContext.Initialize()
+	err := godotenv.Load(".env")
 
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
+	dbContext.Initialize()
+	defer dbContext.Db.Close()
 	handleRequests()
 }
