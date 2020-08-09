@@ -9,7 +9,11 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-func Initialize(conn *model.DbContext) {
+type DbContext struct {
+	Db *gorm.DB
+}
+
+func (conn *DbContext) Initialize() {
 
 	user := os.Getenv("APP_DB_USERNAME")
 	password := os.Getenv("APP_DB_PASSWORD")
