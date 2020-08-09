@@ -38,6 +38,14 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateUser(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+
+	if err != nil {
+		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
+		return
+	}
+
 	user := model.User{}
 	decoder := json.NewDecoder(r.Body)
 
@@ -49,7 +57,7 @@ func updateUser(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
 	var userEntity model.User
-	dbContext.Db.Where("id= ?", user.Id).Find(&userEntity)
+	dbContext.Db.Where("id= ?", id).Find(&userEntity)
 	userEntity.Name = user.Name
 	userEntity.Email = user.Email
 
