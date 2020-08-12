@@ -1,56 +1,56 @@
-// package main
+package main
 
-// import (
-// 	"bufio"
-// 	"fmt"
-// 	"os"
-// 	"regexp"
-// 	"strings"
-// )
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"regexp"
+	"strings"
+)
 
-// func foundCharacterInString(s string) string {
-// 	text := strings.Split(s, " ")
+func foundCharacterInString(s string) string {
+	text := strings.Split(s, " ")
 
-// 	arr := []string{}
-// 	for i := 0; i < len(text); i++ {
-// 		lenOfText := len(text[i])
-// 		lenOfText = lenOfText - 1
+	arr := []string{}
+	for i := 0; i < len(text); i++ {
+		lenOfText := len(text[i])
+		lenOfText = lenOfText - 1
 
-// 		if strings.Index(text[i], "i") == 0 && strings.LastIndex(text[i], "n") == lenOfText && strings.Contains(text[i], "a") {
-// 			arr = append(arr, "Found")
-// 		} else {
-// 			arr = append(arr, "Not")
-// 		}
-// 	}
+		if strings.Index(text[i], "i") == 0 && strings.LastIndex(text[i], "n") == lenOfText && strings.Contains(text[i], "a") {
+			arr = append(arr, "Found")
+		} else {
+			arr = append(arr, "Not")
+		}
+	}
 
-// 	for i := 0; i < len(arr); i++ {
-// 		matched, _ := regexp.MatchString(arr[i], "Not")
+	for i := 0; i < len(arr); i++ {
+		matched, _ := regexp.MatchString(arr[i], "Not")
 
-// 		if matched {
-// 			return "Not Found!"
-// 		}
-// 	}
+		if matched {
+			return "Not Found!"
+		}
+	}
 
-// 	return "Found!"
-// }
+	return "Found!"
+}
 
-// func main() {
-// 	fmt.Println("Welcome")
+func main() {
+	fmt.Println("Welcome")
 
-// 	var inputString string
+	var inputString string
 
-// 	fmt.Println("Please input text")
+	fmt.Println("Please input text")
 
-// 	scanner := bufio.NewScanner(os.Stdin)
-// 	scanner.Scan()
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
 
-// 	inputString = scanner.Text()
+	inputString = scanner.Text()
 
-// 	inputString = strings.ToLower(inputString)
+	inputString = strings.ToLower(inputString)
 
-// 	fmt.Println("Your input is convert to lowser case ", inputString)
+	fmt.Println("Your input is convert to lowser case ", inputString)
 
-// 	result := foundCharacterInString(inputString)
+	result := foundCharacterInString(inputString)
 
-// 	fmt.Println("The result ", result)
-// }
+	fmt.Println("The result ", result)
+}
