@@ -78,7 +78,7 @@ func (f *FoodRepository) GetAllFood() ([]entity.Food, error) {
 func (f *FoodRepository) Update(id uuid.UUID, food *entity.Food) (*entity.Food, map[string]string) {
 	dbErr := map[string]string{}
 
-	err := f.db.Model(&food).Where("id=?", id).Update("Title", "Description", "ImageURL").Error
+	err := f.db.Model(&food).Where("id=?", id).Update(&food).Error
 	if err != nil {
 		//since our title is unique
 		if strings.Contains(err.Error(), "duplicate") || strings.Contains(err.Error(), "Duplicate") {

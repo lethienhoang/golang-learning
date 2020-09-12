@@ -1,16 +1,16 @@
-package main
+// package main
 
-import (
-	"fmt"
-)
+// import (
+// 	"fmt"
+// )
 
-type P struct {
-	x string
-	y int
-}
+// type P struct {
+// 	x string
+// 	y int
+// }
 
-func main() {
-	s := make([]int, 0, 3)
-	s = append(s, 100)
-	fmt.Println(len(s), cap(s))
-}
+// func main() {
+// 	s := make([]int, 0, 3)
+// 	s = append(s, 100)
+// 	fmt.Println(len(s), cap(s))
+// }
