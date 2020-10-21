@@ -16,10 +16,16 @@ func main() {
 	router.LoadHTMLFiles("index.html")
 
 	// add new user to socket
-	router.POST("/users/:userId", func(c *gin.Context) {
+	router.GET("/users/:userId", func(c *gin.Context) {
 		userID := c.Param("userId")
 		hub.serveWsForAddUser(c.Writer, c.Request, userID)
-		c.HTML(200, "index.html", nil)
+		// c.HTML(200, "index.html", nil)
+	})
+
+	router.GET("/users/:userId/chat/:roomId", func(c *gin.Context) {
+		userID := c.Param("userId")
+		roomID := c.Param("roomId")
+		hub.serveWsForAssignUserToRoom(c.Writer, c.Request, userID, roomID)
 	})
 
 	// assign user to room
@@ -35,12 +41,6 @@ func main() {
 		roomID := c.Param("roomId")
 		hub.serveWsForAddRoom(c.Writer, c.Request, roomID)
 		// c.HTML(200, "index.html", nil)
-	})
-
-	router.GET("/users/chat/:roomId", func(c *gin.Context) {
-		userID := c.Param("userId")
-		roomID := c.Param("roomId")
-		hub.serveWsForAssignUserToRoom(c.Writer, c.Request, userID, roomID)
 	})
 
 	router.Run(fmt.Sprintf(":%d", 8080))
