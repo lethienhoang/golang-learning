@@ -22,12 +22,6 @@ func main() {
 		// c.HTML(200, "index.html", nil)
 	})
 
-	router.GET("/users/:userId/chat/:roomId", func(c *gin.Context) {
-		userID := c.Param("userId")
-		roomID := c.Param("roomId")
-		hub.serveWsForAssignUserToRoom(c.Writer, c.Request, userID, roomID)
-	})
-
 	// assign user to room
 	router.POST("/room/:roomId/user/:userId", func(c *gin.Context) {
 		userID := c.Param("userId")
